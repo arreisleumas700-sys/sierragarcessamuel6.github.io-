@@ -1,0 +1,232 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuidado Digitales Manantiales</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: background 0.5s ease;
+    }
+
+    
+    #mision:target ~ body,
+    #vision:target ~ body,
+    #valores:target ~ body {
+      background-image: none !important;
+      background-color: white !important;
+    }
+
+    
+    .navbar {
+      background-color: rgba(184, 221, 246, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar img {
+      height: 150px;
+      margin-bottom: 0;
+      padding: 5px;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .navbar img:hover {
+      background-color: #5DADEC;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    .nav-menu li {
+      position: relative;
+    }
+
+    .nav-menu li a {
+      color: black;
+      text-decoration: none;
+      padding: 14px 20px;
+      transition: background 0.3s;
+      display: block;
+      cursor: pointer;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a:focus {
+      background-color: #5DADEC;
+      color: black;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    .has-submenu {
+      position: relative;
+    }
+
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      list-style: none;
+      padding: 5px 0;
+      min-width: 140px;
+      z-index: 100;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .submenu li a {
+      padding: 8px 15px;
+      display: block;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .submenu li a:hover {
+      background-color: #5DADEC;
+      color: white;
+      border-radius: 5px;
+    }
+
+    .has-submenu:hover .submenu {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar img {
+        margin-bottom: 30px;
+      }
+    }
+
+    
+    section.info-section {
+      display: none;
+      margin: 50px auto;
+      max-width: 900px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      background-color: white;
+      transition: background 0.3s ease;
+    }
+
+    section.info-section:target {
+      display: block;
+    }
+
+    section.info-section h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    section.info-section img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    }
+
+    #inicio-section {
+      margin: 100px auto;
+      max-width: 900px;
+      text-align: center;
+      background-color: rgba(230, 242, 255, 0.85);
+      padding: 40px 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <img id="logo" src="imagen.png" alt="Logo de Cuidado Digitales Manantiales" />
+    <ul class="nav-menu">
+      <li><a href="#inicio-section" aria-current="page">Inicio</a></li>
+
+      <li class="has-submenu">
+        <a href="#">Sobre nosotros</a>
+        <ul class="submenu">
+          <li><a href="#mision">Misión</a></li>
+          <li><a href="#vision">Visión</a></li>
+          <li><a href="#valores">Valores</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#">Proyecto integrado</a></li>
+      <li><a href="#">Producto</a></li>
+      <li><a href="#">Galería</a></li>
+      <li><a href="#">Contáctanos</a></li>
+    </ul>
+  </nav>
+
+
+  <section id="mision" class="info-section" aria-label="Misión">
+    <h2>Misión</h2>
+    <img src="mision.jpg" alt="Imagen de misión">
+    <p>Nuestra misión es impulsar la presencia digital de cada cliente a través del diseño y desarrollo de páginas web personalizadas, creativas y funcionales. Nos enfocamos en comprender las necesidades de cada negocio para crear soluciones innovadoras, atractivas y optimizadas que fortalezcan su marca, generen confianza y aporten valor en el entorno digital.</p>
+  </section>
+
+  <section id="vision" class="info-section" aria-label="Visión">
+    <h2>Visión</h2>
+    <img src="vision.jpg" alt="Imagen de visión">
+    <p>Nuestra visión es ser la empresa líder en diseño web personalizado en el mercado nacional e internacional, reconocida por la excelencia en la experiencia del usuario, la innovación tecnológica y el acompañamiento cercano a nuestros clientes, contribuyendo así a la transformación digital de todo tipo de organizaciones.</p>
+    
+  
+
+  </section>
+
+  <section id="valores" class="info-section" aria-label="Valores">
+    <h2>Valores</h2>
+    <img src="WhatsApp Image 2025-09-05 at 11.19.10 AM.jpeg" alt="Imagen de valores">
+  </section>
+
+
+</body>
+</html>

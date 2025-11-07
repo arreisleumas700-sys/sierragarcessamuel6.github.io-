@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cuidado Digitales Manantiales</title>
+  <style>
+    /* Para incluir padding y border en el ancho total */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      scroll-behavior: smooth;
+      background-image: url('1.jpg'); /* Imagen de fondo */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      transition: background 0.3s ease;
+    }
+
+    body.sin-fondo {
+      background-image: none;
+      background-color: white;
+    }
+
+    .navbar {
+      background-color: rgba(184, 221, 246, 0.9); /* Fondo semitransparente */
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar img {
+      height: 150px; /* Imagen más grande */
+      margin-bottom: 0;
+      padding: 5px;
+      transition: background-color 0.3s;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .navbar img:hover {
+      background-color: #5DADEC;
+    }
+
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      flex-wrap: wrap;
+      position: relative;
+    }
+
+    .nav-menu li {
+      position: relative;
+      display: inline-block;
+    }
+
+    .nav-menu li a {
+      color: black;
+      text-decoration: none;
+      padding: 14px 20px;
+      transition: background 0.3s;
+      display: block;
+      cursor: pointer;
+    }
+
+    .nav-menu li a:hover,
+    .nav-menu li a:focus {
+      background-color: #5DADEC;
+      color: black;
+      border-radius: 5px;
+      outline: none;
+    }
+
+    /* Submenús */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: rgba(184, 221, 246, 0.95);
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      min-width: 150px;
+      z-index: 100;
+    }
+
+    .submenu li {
+      display: block;
+    }
+
+    .submenu li a {
+      padding: 10px 15px;
+      color: black;
+      white-space: nowrap;
+    }
+
+    .nav-menu li:hover > .submenu {
+      display: block;
+    }
+
+    /* Contenido principal blanco que aparece al hacer clic */
+    #contenido {
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      display: none;
+    }
+
+    /* Galería de imágenes */
+    #galeria {
+      display: none;
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    #galeria img {
+      max-width: 150px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.15);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    #galeria img:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar img {
+        margin-bottom: 30px;
+      }
+
+      #galeria img {
+        max-width: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Menú principal">
+    <img id="logo" src="imagen.png" alt="Logo de Cuidado Digitales Manantiales" />
+    <ul class="nav-menu">
+      <li><a href="#" id="inicio-link" aria-current="page">Inicio</a></li>
+
+      <li>
+        <a href="#" aria-haspopup="true" aria-expanded="false">Sobre nosotros</a>
+        <ul class="submenu" aria-label="Submenú Sobre nosotros">
+          <li><a href="#" data-content="valores">Valores</a></li>
+          <li><a href="#" data-content="mision">Misión</a></li>
+          <li><a href="#" data-content="vision">Visión</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#" aria-haspopup="true" aria-expanded="false">Proyecto integrado</a>
+        <ul class="submenu" aria-label="Submenú Proyecto integrado">
+          <li><a href="#" data-content="poster">Poster</a></li>
+          <li><a href="#" data-content="brochure">Brochure</a></li>
+          <li><a href="#" data-content="dossier">Dossier</a></li>
+        </ul>
+      </li>
+
+      <li><a href="#" id="producto-link">Producto</a></li>
+      <li><a href="#" id="galeria-link">Galería</a></li>
+      <li><a href="#" id="contacto-link">Contáctanos</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Contenido que se muestra al hacer clic en submenú -->
+    <section id="contenido" role="region" aria-live="polite"></section>
+
+    <!-- Galería de imágenes -->
+    <section id="galeria" aria-label="Galería de imágenes">
+      <img src="g1.jpg" alt="Galería imagen 1" />
+      <img src="g2.jpg" alt="Galería imagen 2" />
+      <img src="g3.jpg" alt="Galería imagen 3" />
+      <img src="g4.jpg" alt="Galería imagen 4" />
+      <img src="g5.jpg" alt="Galería imagen 5" />
+      <img src="g6.jpg" alt="Galería imagen 6" />
+      <img src="g7.jpg" alt="Galería imagen 7" />
+    </section>
+  </main>
+
+  <script>
+    const contenido = document.getElementById('contenido');
+    const galeria = document.getElementById('galeria');
+    const body = document.body;
+
+    // Datos para el contenido dinámico
+    const contenidoData = {
+      valores: {
+        titulo: "Valores",
+        texto: "Nuestros valores fundamentales incluyen integridad, respeto, responsabilidad y compromiso con la comunidad."
+      },
+      mision: {
+        titulo: "Misión",
+        texto: "Nuestra misión es brindar cuidado digital de calidad y apoyo a las personas mayores para mejorar su calidad de vida."
+      },
+      vision: {
+        titulo: "Visión",
+        texto: "Ser un referente en servicios digitales para adultos mayores, promoviendo inclusión y bienestar."
+      },
+      poster: {
+        titulo: "Poster",
+        texto: "Visualiza nuestro poster informativo del proyecto integrado."
+      },
+      dossier: {
+        titulo: "Dossier",
+        texto: "Accede a nuestro dossier completo con el análisis y estadísticas."
+      },
+      producto: {
+        titulo: "Producto",
+        texto: "Detalles sobre nuestro producto innovador."
+      },
+      contacto: {
+        titulo: "Contáctanos",
+        texto: "Puedes contactarnos a través de nuestro correo electrónico o teléfono."
+      }
+    };
+
+    // Función para mostrar contenido en sección blanca y ocultar fondo
+    function mostrarContenido(key) {
+      if (!contenidoData[key]) return;
+
+      contenido.innerHTML = `<h2>${contenidoData[key].titulo}</h2><p>${contenidoData[key].texto}</p>`;
+      contenido.style.display = 'block';
+      galeria.style.display = 'none';
+      body.classList.add('sin-fondo');
+      window.scrollTo({ top: contenido.offsetTop - 20, behavior: 'smooth' });
+    }
+
+    // Evento para submenús
+    document.querySelectorAll('.submenu a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const key = link.getAttribute('data-content');
+
+        if (key === 'brochure') {
+          window.open('https://www.flipsnack.com/67775D5EFB5/new-flipbook/full-view.html', '_blank');
+          return;
+        }
+
+        mostrarContenido(key);
+      });
+    });
+
+    // Evento para Galería
+    document.getElementById('galeria-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      contenido.style.display = 'none';
+      galeria.style.display = 'flex';
+      galeria.style.flexWrap = 'wrap';
+      body.classList.add('sin-fondo');
+      window.scrollTo({ top: galeria.offsetTop - 20, behavior: 'smooth' });
+    });
+
+    // Evento para Inicio (volver a la imagen de fondo y ocultar secciones)
+    document.getElementById('inicio-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      contenido.style.display = 'none';
+      galeria.style.display = 'none';
+      body.classList.remove('sin-fondo');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Puedes agregar aquí eventos para producto y contacto si quieres mostrar contenido dinámico similar
+    document.getElementById('producto-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      mostrarContenido('producto');
+    });
+
+    document.getElementById('contacto-link').addEventListener('click', (e) => {
+      e.preventDefault();
+      mostrarContenido('contacto');
+    });
+
+  </script>
+</body>
+</html>
